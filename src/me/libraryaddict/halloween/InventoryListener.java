@@ -1,6 +1,5 @@
 package me.libraryaddict.halloween;
 
-import me.libraryaddict.disguise.disguisetypes.Disguise;
 import me.libraryaddict.inventory.events.PagesClickEvent;
 
 import org.bukkit.ChatColor;
@@ -30,9 +29,6 @@ public class InventoryListener implements Listener {
                         if (p.getLevel() >= costume.getLevelRequired()) {
                             gamer.setCostume(costume);
                             if (costume != Costume.NO_DISGUISE) {
-                                Disguise disguise = costume.getDisguise().setEntity(p);
-                                disguise.getWatcher().setCustomName(p.getDisplayName());
-                                disguise.startDisguise();
                                 p.sendMessage(ChatColor.BLUE + "Now using the " + costume.getName() + " costume!");
                             } else {
                                 p.sendMessage(ChatColor.BLUE + "You've taken off your costume!");

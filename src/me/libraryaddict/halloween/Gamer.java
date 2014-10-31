@@ -1,5 +1,6 @@
 package me.libraryaddict.halloween;
 
+import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
 import me.libraryaddict.scoreboard.ScoreboardManager;
 
@@ -95,6 +96,13 @@ public class Gamer {
     public void setCostume(Costume costume) {
         if (getCostume() != costume) {
             this.costume = costume;
+            if (costume != Costume.NO_DISGUISE) {
+                Disguise disguise = costume.getDisguise().setEntity(getPlayer());
+                disguise.getWatcher().setCustomName(getPlayer().getDisplayName());
+                disguise.startDisguise();
+            } else {
+                DisguiseAPI.undisguiseToAll(getPlayer());
+            }
             ScoreboardManager.addToTeam(getPlayer(), ChatColor.BLUE + "Costume: ", "Costume", "", costume.getName(), false);
             HalloweenApi.getMysqlManager().changeDisguise(getPlayer().getUniqueId(), getCostume());
         }
