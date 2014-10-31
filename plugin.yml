@@ -1,0 +1,5 @@
+name: Halloween
+main: me.libraryaddict.halloween.Halloween
+version: 1.0
+author: libraryaddict
+depend: [LibsDisguises, BlockSchemes, InventoryApi, Credits]
