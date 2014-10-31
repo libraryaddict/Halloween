@@ -92,6 +92,7 @@ public class MysqlManager {
                             p.setExp((exp - (p.getLevel() * 100)) / 100);
                             p.addPotionEffects(potionEffects);
                             gamer.loadData(costume, info);
+                            info.startHolograms(p);
                             p.sendMessage(ChatColor.GOLD + "================ " + ChatColor.DARK_RED + "Red" + ChatColor.RED
                                     + "Warfare " + ChatColor.RED + "presents" + ChatColor.GOLD + " ================");
                             p.sendMessage(ChatColor.GOLD + "=================== " + ChatColor.DARK_RED + "Trick "

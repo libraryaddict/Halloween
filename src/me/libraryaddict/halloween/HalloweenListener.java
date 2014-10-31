@@ -229,7 +229,7 @@ public class HalloweenListener implements Listener {
                                     public void run() {
                                         if (!npc.hasMetadata("Ran")) {
                                             gamer.getInfo().addTreat();
-                                            gamer.getInfo().addLooted(door);
+                                            gamer.getInfo().addLooted(p, door);
                                             HalloweenApi.getMysqlManager().onLoot(p, gamer.getInfo());
                                             p.sendMessage("<Villager> " + NpcStatements.VILLAGER.getMessage(Type.GIVE));
                                             Treat.values()[new Random().nextInt(Treat.values().length)].apply(p);
@@ -268,7 +268,7 @@ public class HalloweenListener implements Listener {
                                             }
                                             p.setExp(exp);
                                             gamer.getInfo().addTrick();
-                                            gamer.getInfo().addLooted(door);
+                                            gamer.getInfo().addLooted(p, door);
                                             HalloweenApi.getMysqlManager().onLoot(p, gamer.getInfo());
                                             p.sendMessage("<Witch> " + NpcStatements.WITCH.getMessage(Type.GIVE));
                                             Trick.values()[new Random().nextInt(Trick.values().length)].apply(p);
@@ -292,7 +292,7 @@ public class HalloweenListener implements Listener {
                                 public void run() {
                                     if (!npc.hasMetadata("Ran")) {
                                         gamer.getInfo().addRepeat();
-                                        gamer.getInfo().addLooted(door);
+                                        gamer.getInfo().addLooted(p, door);
                                         HalloweenApi.getMysqlManager().onLoot(p, gamer.getInfo());
                                         ScoreboardManager.addToTeam(p, ChatColor.DARK_AQUA + "Knocked: ", "Knocked", "",
                                                 ChatColor.AQUA
@@ -434,6 +434,7 @@ public class HalloweenListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Gamer gamer = HalloweenApi.getPlayerManager().getGamer(event.getPlayer());
         HalloweenApi.getPlayerManager().unregisterGamer(gamer);
+        gamer.getInfo().onQuit(gamer.getPlayer());
         ScoreboardManager.removeFromTeam(gamer.getPlayer());
         HubApi.setPlayersAndTime(Bukkit.getOnlinePlayers().size() - 1, 0);
         final File file = new File("world/playerdata", event.getPlayer().getUniqueId().toString() + ".dat");

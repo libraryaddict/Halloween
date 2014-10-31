@@ -30,7 +30,8 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>HubConnector:HubConnector</include>
+                                    <include>HubConnector:HubConnector</include>
+                                    <include>Holograms:Holograms</include>
 									<include>ScoreboardManager:ScoreboardManager</include>
 								</includes>
 							</artifactSet>
